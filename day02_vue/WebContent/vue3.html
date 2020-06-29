@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="./js/vue.js"></script>
+</head>
+<body>
+<!--创建模板-->
+ <div id="app">
+{{num}}
+<form>
+
+</form>
+</div>
+<script type="text/javascript">
+var app= new Vue({
+	el:"#app",
+	data:{
+		num:18
+	},
+  created(){
+		this.num=19
+	}
+})
+</script> 
+  
+  
+</body>
+</html>

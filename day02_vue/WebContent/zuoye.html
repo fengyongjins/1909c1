@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="./js/vue.js"></script>
+
+</head>
+<body>
+<div id ='app'>
+		<ul>
+		    <li v-for="(emp,index)  in  emps">
+		     {{index}} : {{emp.name}} : {{emp.age}} : {{emp.hobby}} 
+		    <button @click="emp.age++">加</button><button @click="emp.age--">减</button>
+		    </li>
+  		</ul>
+  		
+  			<ul>
+		    <li v-for="(value,key,index)  in  emp">
+		     		{{index}}:{{key}}:{{value}}
+		     		
+		    </li>
+		     <button @click="emp.age++">加</button><button @click="emp.age--">减</button>
+  		</ul>
+  	
+  		</div>
+
+  <script type="text/javascript">
+		var app = new Vue({
+			el:"#app",
+			data:{
+				 emps:[
+				       {name:'王子', age: 21, hobby:'lol'},
+				       {name:'吉祥', age: 30, hobby:'泡妞'},
+				       {name:'建军', age: 24, hobby:'打灰机'},
+				       {name:'旭哥', age: 18, hobby:'DNF'},
+				       {name:'小杰', age: 25, hobby:'cf'}
+				     ],
+		             emp:{name:'王子', age: 21, hobby:'lol'},
+		            
+			},
+			 
+		})
+
+	</script>
+	<div id ='ap'>
+		<input type="checkbox" v-model="hobby" value="1">1
+		<input type="checkbox" v-model="hobby" value="2">2
+		<input type="checkbox" v-model="hobby" value="3">3
+		<input type="checkbox" v-model="hobby" value="4">4
+	</div>
+	<script type="text/javascript">
+		var ap= new Vue({
+			el:"#ap",
+			data:{
+				hobby:[]
+			}
+		})
+	
+	</script>
+</body>
+
+</html>

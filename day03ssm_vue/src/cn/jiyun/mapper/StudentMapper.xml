@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.jiyun.mapper.StudentMapper">
+<resultMap type="student" id="query_student">
+   <id column="sid" property="sid"/>
+    <result column="sname" property="sname"/>
+    <result column="sex" property="sex"/>
+      <result column="pic" property="pic"/>
+        <result column="birthday" property="birthday"/>
+          <result column="cid" property="cid"/>    
+          <association property="clazz" javaType="clazz">
+          <id column="cid" property="cid"/>
+           <result column="cname" property="cname"/>
+          </association>
+</resultMap>
+<select id="findAll" resultMap="query_student" >
+ select * from student s,clazz c where s.cid=c.cid
+</select>
+</mapper>

@@ -18,4 +18,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="findAll" resultMap="query_student" >
  select * from student s,clazz c where s.cid=c.cid
 </select>
+<select id="findCalzz" resultType="clazz">
+  select * from clazz
+</select>
+<insert id="add" parameterType="student" useGeneratedKeys="true" keyProperty="sid">
+  insert into student values (null,#{sname},#{sex},#{cid},#{birthday},#{pic})
+</insert>
+<update id="update" parameterType="student">
+  update student set sname=#{sname},sex=#{sex},cid=#{cid},birthday=#{birthday} where sid=#{sid}
+</update>
+	<delete id="delStu">
+		delete from student where sid in
+		<foreach collection="ids" item="id" open="(" close=")" separator=",">
+		 #{id}
+		</foreach>
+	</delete>
 </mapper>

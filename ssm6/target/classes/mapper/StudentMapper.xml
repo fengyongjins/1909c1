@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoshu.dao.StudentMapper">
+  <resultMap id="BaseResultMap" type="com.xiaoshu.entity.Student">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="sdid" jdbcType="INTEGER" property="sdid" />
+    <result column="sdname" jdbcType="VARCHAR" property="sdname" />
+    <result column="sdsex" jdbcType="VARCHAR" property="sdsex" />
+    <result column="sdhobby" jdbcType="VARCHAR" property="sdhobby" />
+    <result column="sdbirth" jdbcType="DATE" property="sdbirth" />
+    <result column="mid" jdbcType="INTEGER" property="mid" />
+    <association property="major" javaType="major">
+  <id column="mdid" jdbcType="INTEGER" property="mdid" />
+    <result column="mdname" jdbcType="VARCHAR" property="mdname" />  
+    
+    </association>
+  </resultMap>
+    <select id="findAll" resultMap="BaseResultMap" parameterType="student">
+         select * from tb_stu_day a,tb_major_day b where a.mid=b.mdid
+         <if test="sdname!=null and sdname!=''">
+          and sdname like "%${sdname}%"
+         </if>
+         <if test="mid!=null and mid!=''">
+          and  a.mid = #{mid}
+         </if>
+         <if test="start!=null and start!=''">
+          and sdbirth &gt;#{start}
+         </if>
+         <if test="end!=null and end!=''">
+          and sdbirth &lt;#{end}
+         </if>
+    </select>
+    <select id="countStudent" resultType="countVo">
+    SELECT
+      b.mdname,COUNT(a.mid) num 
+      FROM tb_stu_day a RIGHT JOIN tb_major_day b 
+      ON 
+      a.mid=b.mdid
+      GROUP BY b.mdname
+    </select>
+</mapper>
